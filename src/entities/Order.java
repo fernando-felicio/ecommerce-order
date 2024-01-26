@@ -8,8 +8,6 @@ import java.util.ArrayList;
 
 public class Order {
 
-	private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-	
 	private Date moment;
 	private OrderStatus status;
 	private Client client;
@@ -68,6 +66,7 @@ public class Order {
 	
 	@Override
 	public String toString() {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		StringBuilder sb = new StringBuilder();
 		sb.append("Order moment: ");
 		sb.append(sdf.format(moment) + "\n");

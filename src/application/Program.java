@@ -1,14 +1,17 @@
 package application;
-import java.util.Locale;
-import java.util.Scanner;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.Locale;
+import java.util.Scanner;
+
 import entities.Client;
 import entities.Order;
 import entities.OrderItem;
 import entities.Product;
-import entities.enums.*;
-import java.util.Date;
+import entities.enums.OrderStatus;
 
 
 public class Program {
@@ -16,7 +19,8 @@ public class Program {
 	public static void main (String[] args) throws ParseException {
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		
+		DateTimeFormatter sdf2 = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");	
+				
 		Locale.setDefault(Locale.US);
 		Scanner scanner = new Scanner(System.in);		
 		
@@ -44,9 +48,12 @@ public class Program {
 		System.out.println("Status: " + status + "...");
 		
 		System.out.print("How many items will there be in this order? ");
-		int qtdItems = scanner.nextInt();		
+		int qtdItems = scanner.nextInt();	
+				
+		LocalDateTime ldt = LocalDateTime.now();
+		String dateTimeNow = ldt.format(sdf2);
 		
-		Order order = new Order(new Date(), status, client);
+		Order order = new Order(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(dateTimeNow), status, client);
 		
 		//Entering Products data - Product Class
 		
