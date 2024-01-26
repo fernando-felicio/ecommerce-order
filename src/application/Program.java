@@ -1,4 +1,8 @@
 package application;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -82,9 +86,42 @@ public class Program {
 		System.out.println(" ");	
 		System.out.println(order);
 		
+		// Output dos dados em uma string
+        String outputData = order.toString();
+
+        // Caminho para o desktop
+        String desktopPath = System.getProperty("user.home") + "/Desktop/";
+
+        // Criar uma nova pasta "Orders" no desktop
+        File ordersDirectory = new File(desktopPath + "Orders");
+        if (!ordersDirectory.exists()) {
+            ordersDirectory.mkdir();
+        }
+
+        // Nome do arquivo
+        String fileName = "order_details.txt";
+
+        // Caminho completo do arquivo dentro da pasta "Orders"
+        String filePath = ordersDirectory.getAbsolutePath() + "/" + fileName;
+
+        // Salvar os dados em um arquivo de texto
+        saveTextToFile(outputData, filePath);
+
+        System.out.println("Dados salvos com sucesso em: " + filePath);
+
+		
 		scanner.close();
 		
 		
 	}
+	
+	 // Método para salvar uma string em um arquivo de texto
+    private static void saveTextToFile(String text, String filePath) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+            writer.write(text);
+        } catch (IOException e) {
+            System.out.println("Erro ao salvar o arquivo: " + e.getMessage());
+        }
+    }
 
 }
