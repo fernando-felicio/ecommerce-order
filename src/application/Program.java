@@ -86,6 +86,19 @@ public class Program {
 		System.out.println(" ");	
 		System.out.println(order);
 		
+		System.out.println(" ");
+		System.out.print("Did the customer make the payment? (Y/N): ");
+		String customerPayment = scanner.next().toLowerCase();
+		
+		if (customerPayment.charAt(0) == 'y') {
+			order.setStatus(OrderStatus.SHIPPED);
+			System.out.println("Order Status: " + order.getStatus());
+		} else {
+			order.setStatus(OrderStatus.PENDING_PAYMENT);
+			System.out.println("Order Status: " + order.getStatus());
+		}
+		
+		
 		// Output dos dados em uma string
         String outputData = order.toString();
 
