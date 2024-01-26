@@ -39,3 +39,6 @@ Este sistema foi desenvolvido por [Fernando Felício](https://github.com/fernand
 ## Licença
 
 Livre
+
+<img src="https://assets-global.website-files.com/622faf89982b1a82750a4f2b/6304ad2c82d9e6429ab2ef38_eCommerce%20Order%20Management%20-%20Header.jpg" alt="Header Image">
+
