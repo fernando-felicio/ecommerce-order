@@ -38,6 +38,6 @@ public class Order {
 	List<Order> listToDelivery = new ArrayList<>();
 	
 	public void addItem(OrderItem OrderItem) {
-		listToDelivery.add(OrderItem);
+		
 	}
 }

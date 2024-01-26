@@ -36,4 +36,13 @@ public class OrderItem {
 		return sum;
 	}
 
+	@Override
+	public String toString() {
+		return "OrderItem [quantity=" + quantity + ", price=" + price + "]";
+	}
+	
+	
+	
+	
+
 }
