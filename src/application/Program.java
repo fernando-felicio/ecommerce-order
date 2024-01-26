@@ -49,7 +49,7 @@ public class Program {
 			
 			orderItem.setPrice(x.getPrice());
 			
-			orderItem.subTotal(orderItem.getQuantity(), orderItem.getPrice());
+			orderItem.subTotal();
 			
 			System.out.println(orderItem);
 			
