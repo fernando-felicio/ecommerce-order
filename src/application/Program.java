@@ -1,61 +1,79 @@
 package application;
 import java.util.Locale;
 import java.util.Scanner;
-import java.util.List;
-import java.util.ArrayList;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import entities.Client;
 import entities.Order;
 import entities.OrderItem;
 import entities.Product;
-import entities.OrderItem;
 import entities.enums.*;
+import java.util.Date;
 
 
 public class Program {
 	
-	public static void main (String[] args) {
+	public static void main (String[] args) throws ParseException {
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		
 		Locale.setDefault(Locale.US);
-		Scanner scanner = new Scanner(System.in);
+		Scanner scanner = new Scanner(System.in);		
 		
-		System.out.println("How many items will there be in this order?");
-		int qtdItems = scanner.nextInt();
+		//Entering Customer data - Client Class
+		System.out.println("Enter client data:"); 
 		
+		System.out.print("Name: ");
+		String name = scanner.nextLine();
 		
-		List<Product> listToDelivery = new ArrayList<>();
+		System.out.print("Email: ");
+		String email = scanner.next();
+		
+		System.out.print("Birth Date: ");
+		Date birthDate = sdf.parse(scanner.next());
+		
+		Client client = new Client(name, email, birthDate);
+		
+		//Entering Order data - Order Class
+		
+		System.out.println(" ");
+		System.out.println("Enter order data:");
+		System.out.println(" ");
+		
+		OrderStatus status = OrderStatus.PROCESSING;
+		System.out.println("Status: " + status + "...");
+		
+		System.out.print("How many items will there be in this order? ");
+		int qtdItems = scanner.nextInt();		
+		
+		Order order = new Order(new Date(), status, client);
+		
+		//Entering Products data - Product Class
 		
 		for (int i = 0; i<qtdItems; i++) {
 			
-			System.out.println("Enter the product name: ");			
-			String nameProduct = scanner.nextLine();
+			System.out.println("Enter #" + (i +1) + " item data: ");
+			
+			System.out.print("Enter the product name: ");	
 			scanner.nextLine();
-						
-			System.out.println("Enter the value of the product: ");
+			String nameProduct = scanner.nextLine();
+									
+			System.out.print("Enter the value of the product: ");
 			Double valueProduct = scanner.nextDouble();
+			
+			System.out.print("Quantity: ");
+			int quantity = scanner.nextInt();
 			
 			Product product = new Product(nameProduct, valueProduct);
 			
-			listToDelivery.add(product);
+			OrderItem item = new OrderItem(quantity, valueProduct, product);
+			
+			order.addItem(item);
 									
 		}
 		
-		for (Product x : listToDelivery) {
-			
-			OrderItem orderItem = new OrderItem();
-			
-			System.out.println("How many " + x.getName() + " ");
-			int qtdOrderItem = scanner.nextInt();
-			
-			orderItem.setQuantity(qtdOrderItem);
-			
-			orderItem.setPrice(x.getPrice());
-			
-			orderItem.subTotal();
-			
-			System.out.println(orderItem);
-			
-		}
-		
-		
+		System.out.println(" ");	
+		System.out.println(order);
 		
 		scanner.close();
 		

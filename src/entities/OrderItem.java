@@ -48,8 +48,8 @@ public class OrderItem {
 
 	@Override
 	public String toString() {
-		return getProduct().getName() + ", : $" + String.format("%.2f",
-				price + ", Quantity: " + quantity + ", Subtotal: $" + String.format("%.2f", subTotal()));
+		return getProduct().getName() + ", Price: $" + String.format("%.2f",
+				price) + ", Quantity: " + quantity + ", Subtotal: $" + String.format("%.2f", subTotal());
 	}
 
 }

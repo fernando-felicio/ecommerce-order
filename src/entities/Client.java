@@ -47,7 +47,7 @@ public class Client {
 	
 	@Override
 	public String toString() {
-		return name + " - (" + sdf.format(birthDate) + ") - " + email;
+		return name + " - Birth Date (" + sdf.format(birthDate) + ") - " + email;
 	}
 
 }
